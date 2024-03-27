@@ -1,0 +1,73 @@
+{% extends 'test/base.html.twig' %}
+
+{% block title %}Resultats{% endblock %}
+
+{% block body %}
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            border: 2px solid black;
+            font-family: Arial, sans-serif;
+        }
+
+        th, td {
+            border: 1px solid #848383;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #330bb5;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+    </head>
+    <body>
+    <table>
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date de naissance</th>
+            <th>Niveau scolaire</th>
+            <th>Module choisit</th>
+            <th>Motif d'inscription</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% set displayedIds = [] %}
+        {% for etudiant in dbd %}
+            {% if etudiant.id not in displayedIds %}
+                <tr>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>{{ etudiant.prenoms }}</td>
+                    <td>{{ etudiant.dateNaissance|date('Y-m-d') }}</td>
+                    <td>{{ etudiant.niveauScolaire }}</td>
+                    <td>{{ etudiant.moduleChoisit }}</td>
+                    <td>{{ etudiant.motifInscription }}</td>
+                    <td>
+                     <a href="{{ path('update_etudiant', {'id': etudiant.id}) }}">Modifier</a> <br>
+                     <a href="{{ path('delete_etudiant', {'id': etudiant.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer vos données ?')">Supprimer</a>
+                    </td>
+                </tr>
+                 {% set _ = displayedIds|merge([etudiant.id]) %}
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+    {{ knp_pagination_render(dbd) }}
+</div>
+{% endblock %}

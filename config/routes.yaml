@@ -1,0 +1,16 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+    # config/routes.yaml
+update_etudiant:
+    path: '/update/{id}'
+    controller: 'App\Controller\EtudiantController::modif'
+
+# config/routes.yaml
+delete_etudiant:
+    path: '/delete/{id}'
+    controller: 'App\Controller\EtudiantController::supprimer'
+

@@ -1,0 +1,108 @@
+{% extends 'test/base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<style>
+
+body {
+    background-color: #0056b3;
+    align-items: center;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px; 
+    border: 1px solid #ccc;
+    background-color: rgba(11, 11, 11, 0.7);
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    color: white;
+    margin: 50px auto; 
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: calc(100% - 110px); 
+    padding: 9px;
+    margin-bottom: 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    background-color: rgb(12, 59, 148);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+input[type="reset"] {
+    background-color: rgb(12, 59, 148);
+}
+
+form::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media (max-width: 400px) {
+    form {
+        width: 100%;
+    }
+}
+</style>
+
+   <form method="POST" action="{{ path('update_etudiant', {'id': etudiant.id}) }}">
+    <label for="nom">Nom:</label>
+    <input type="text" name="nom" required value="{{ etudiant.nom }}"><br>
+
+    <label for="prenom">Prénom:</label>
+    <input type="text" name="prenoms" required value="{{ etudiant.prenoms }}"><br>
+
+    <label for="date_naissance">Date de Naissance:</label>
+    <input type="date" name="date_naissance" required value="{{ etudiant.dateNaissance|date('Y-m-d') }}"><br>
+
+    <label for="niveau_scolaire">Niveau scolaire:</label>
+    <select name="niveau_scolaire" id="niveau_scolaire" required>
+        <option value="" disabled>Veuillez choisir</option>
+        <option value="primaire" {% if etudiant.niveauScolaire == 'primaire' %}selected{% endif %}>Primaire</option>
+        <option value="secondaire" {% if etudiant.niveauScolaire == 'secondaire' %}selected{% endif %}>Secondaire</option>
+        <option value="supérieur" {% if etudiant.niveauScolaire == 'supérieur' %}selected{% endif %}>Supérieur</option>
+    </select><br>
+
+    <label for="module_choisit">Module choisi:</label>
+    <select name="module_choisit" id="module_choisit" required>
+        <option value="" disabled>Veuillez choisir</option>
+        <option value="Developpeur" {% if etudiant.moduleChoisit == 'Developpeur' %}selected{% endif %}>Developpement web et mobile</option>
+        <option value="Community manager" {% if etudiant.moduleChoisit == 'Community manager' %}selected{% endif %}>Community Manager</option>
+        <option value="Project manager" {% if etudiant.moduleChoisit == 'Project manager' %}selected{% endif %}>Gestion de projets</option>
+        <option value="Marketing" {% if etudiant.moduleChoisit == 'Marketing' %}selected{% endif %}>Marketing digital</option>
+    </select><br>
+
+    <label for="motif_inscription">Motif d'inscription:</label>
+    <input type="text" name="motif_inscription" required value="{{ etudiant.motifInscription }}"><br><br>
+
+    <input type="reset" name="supprimer" value="Supprimer">
+    <input type="submit" name="Modifier" value="Modifier">
+</form>
+   
+{% endblock %}
