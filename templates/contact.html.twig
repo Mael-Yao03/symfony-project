@@ -1,0 +1,88 @@
+ {% extends "test/base.html.twig" %}
+
+ {% block title%}Contactez-nous{% endblock %}
+
+ {% block body %}
+
+ <style>
+
+  body {
+      background-image: url("img.jpg");
+      align-items: center;
+      background-size: cover;
+      min-height: 100vh;
+      margin: 0;
+  }
+  
+  form {
+      width: 100%;
+      max-width: 330px;
+      padding: 20px; 
+      border: 1px solid #ccc;
+      background-color: rgba(11, 11, 11, 0.7);
+      border-radius: 20px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      color: white;
+      margin: 50px auto; 
+  }
+  
+  label {
+      display: inline-block;
+      width: 90px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      vertical-align: top;
+  }
+  
+  input[type="text"],
+  textarea {
+      width: calc(100% - 110px); 
+      padding: 9px;
+      margin-bottom: 10px;
+      border: 1px solid white;
+      border-radius: 4px;
+  }
+
+  input[type="submit"] {
+      background-color: rgb(12, 59, 148);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 20px;
+  }
+  
+  form::after {
+      content: "";
+      display: table;
+      clear: both;
+  }
+
+  /* Centrage du bouton Envoyer */
+  form {
+      text-align: center;
+  }
+  
+  @media (max-width: 400px) {
+      form {
+          width: 100%;
+      }
+  }
+</style>
+
+ 
+ <form method="POST" action="{{path('app_contact')}}">
+   <label for="nom">Nom</label>
+   <input type="text" name="nom" required><br><br>
+
+   <label for="email">e-mail</label>
+   <input type="email" name="email" required><br><br>
+
+   <label for="message">Message</label>
+   <textarea name="message" required></textarea><br><br>
+
+   <input type="submit" name="envoyer" value="Envoyer">
+ </form>
+ 
+ {% endblock %}

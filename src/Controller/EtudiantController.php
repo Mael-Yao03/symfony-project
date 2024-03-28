@@ -35,7 +35,7 @@ class EtudiantController extends AbstractController
         $em->persist($Etudiant);
         $em->flush();
 
-        $this->addFlash('success', 'Vous êtes enregistré (e) !');
+        $this->addFlash('success', 'Vous êtes bien enregistré (e) !');
         return $this->redirectToRoute('Insertion');   
     }
 

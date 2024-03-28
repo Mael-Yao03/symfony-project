@@ -24,15 +24,7 @@ class MyController extends AbstractController
 
 
 
-   /* #[Route("/return", name:"sauvegarde", methods:['POST'])]
-    public function saving()
-    {
-        $request = Request::createFromGlobals();
-        // dd($request->request->all());
-        $data=$request->request->all();
-        // dd($data);
-        return $this->render('array.html.twig', ['data'=>$data]);
-    }*/
+   
 
     
 }

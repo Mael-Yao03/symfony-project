@@ -1,6 +1,6 @@
 controllers:
     resource:
-        path: ../src/Controller/
+        path: ../src/Controller
         namespace: App\Controller
     type: attribute
 
@@ -13,4 +13,9 @@ update_etudiant:
 delete_etudiant:
     path: '/delete/{id}'
     controller: 'App\Controller\EtudiantController::supprimer'
+
+# config/routes.yaml
+admin:
+    path: /admin
+    controller: App\Controller\Admin\DashboardController::index
 
